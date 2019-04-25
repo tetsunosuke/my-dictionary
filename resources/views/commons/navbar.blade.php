@@ -10,11 +10,12 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+                    <li class="nav-item">{!! link_to_route('cards.create', '単語カード作成', [], ['class' => 'btn btn-lg btn-primary']) !!}</li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-item">{!! link_to_route('users.show', 'My words', ['id' => Auth::id()]) !!}</li>
+                            <li class="dropdown-item"><a href="/">ホーム</a></li>
+                            <li class="dropdown-item">{!! link_to_route('users.show', 'My cards', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-item"><a href="#">Good一覧</a></li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>

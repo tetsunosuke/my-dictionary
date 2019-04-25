@@ -5,7 +5,7 @@
         <title>Dictionary</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-        <!-- Fonts 
+        <!--{-- Fonts 
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -60,7 +60,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-        </style>-->
+        </style>--}-->
 
     </head>
 
