@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'CardsController@index');
+Route::get('/', 'CardsController@index')->name('home');
 
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
@@ -35,5 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::group(['prefix' => 'users/{id}'], function (){
         Route::get('good_cards', 'UsersController@good_cards')->name('users.good_cards');
+        Route::post('search_good_cards', 'SearchController@good_cards')->name('search.good_cards');
+        Route::post('search_my_cards', 'SearchController@my_cards')->name('search.my_cards');
     });
 });
+
+Route::get('search', 'SearchController@index')->name('search.index');

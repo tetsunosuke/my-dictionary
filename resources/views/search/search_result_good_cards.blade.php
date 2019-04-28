@@ -12,6 +12,8 @@
         </div>               
     {!! Form::close() !!}     
 </div>
+    <p class="text-right">{!! link_to_route('users.good_cards', '<Good一覧へ戻る>', ['id' => $user->id]) !!}</p>
+    <h2 class="mb-3">検索結果　{{ count($cards) }}件</h2>
 <div>
     @include('cards.cards', ['cards' => $cards])
 </div>    
