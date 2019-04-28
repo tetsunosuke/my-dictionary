@@ -24,4 +24,16 @@ Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('cards', 'CardsController', ['only' => ['store', 'update', 'destroy', 'create', 'edit']]);
+    
+    Route::group(['prefix' => 'cards/{id}'], function (){
+        Route::post('good', 'GoodController@good')->name('user.good');
+        //badは必要？good-storeの中に描ける？goodControllerでstoreがダブる。　　
+        //そもそもなぜUsersControllerに書いたらダメなのか？
+        Route::post('bad', 'GoodController@bad')->name('user.bad');
+        Route::delete('cancel_good', 'GoodController@destroy')->name('user.cancel_good');
+    });
+    
+    Route::group(['prefix' => 'users/{id}'], function (){
+        Route::get('good_cards', 'UsersController@good_cards')->name('users.good_cards');
+    });
 });

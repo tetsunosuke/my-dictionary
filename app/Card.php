@@ -12,5 +12,8 @@ class Card extends Model
     {
         return $this->belongsTo(User::class);
     }    
-
+    public function good_users()
+    {
+        return $this->belongsToMany(User::class, 'good', 'card_id', 'user_id')->withTimestamps();    
+    }
 }

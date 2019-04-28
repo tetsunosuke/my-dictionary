@@ -15,14 +15,19 @@
                     <p>{!! nl2br(e($card->english)) !!}</p>
                 </div>                
                 <div class="d-flex flex-row mx-2">
-                    {{--<!--include('favorite.favorite_button', ['micropost' => $micropost])-->--}}
-                    @if (Auth::id() == $card->user_id)
-                        {!! link_to_route('cards.edit', '編集', ['id' => $card->id], ['class' => 'btn btn-info btn-sm']) !!}
-                        
-                        {!! Form::open(['route' => ['cards.destroy', $card->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
-                        {!! Form::close() !!}
-                    @endif
+                        @if (Auth::check())
+                            @include('good.good_button', ['card' => $card])
+                        @endif
+                        @if (Auth::id() == $card->user_id)
+                            <div>
+                                {!! link_to_route('cards.edit', '編集', ['id' => $card->id], ['class' => 'btn btn-info btn-sm']) !!}
+                            </div>
+                            <div class="ml-1">
+                                {!! Form::open(['route' => ['cards.destroy', $card->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
                 </div>
             </div>
         </li>

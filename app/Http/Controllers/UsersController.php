@@ -26,4 +26,16 @@ class UsersController extends Controller
             'cards' => $cards,
         ]);
     }
+    
+    //ログインユーザのidが来る
+    public function good_cards($id)
+    {
+        if (\Auth::id() == $id){  
+            $user = User::find($id);
+            $cards = $user->good_cards()->where('good', 'good')->orderBy('created_at', 'desc')->paginate(20);
+            return view('users.good_cards', ['cards' => $cards]);
+        } else {
+            return back();
+        }
+    }    
 }
