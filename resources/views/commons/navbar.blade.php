@@ -1,6 +1,6 @@
 <header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark"> 
-        <a class="navbar-brand" href="/">Dictionary</a>
+    <nav class="navbar navbar-expand-sm navbar-dark navbar-pink"> 
+        <a class="navbar-brand" href="/"> My Dictionary</a>
          
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    <li class="nav-item">{!! link_to_route('cards.create', '単語カード作成', [], ['class' => 'btn btn-lg btn-primary']) !!}</li>
+                    <li class="nav-item mr-3">{!! link_to_route('cards.create', '単語カード作成', [], ['class' => 'btn btn-lg btn-secondary']) !!}</li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">

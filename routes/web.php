@@ -27,8 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::group(['prefix' => 'cards/{id}'], function (){
         Route::post('good', 'GoodController@good')->name('user.good');
-        //badは必要？good-storeの中に描ける？goodControllerでstoreがダブる。　　
-        //そもそもなぜUsersControllerに書いたらダメなのか？
         Route::post('bad', 'GoodController@bad')->name('user.bad');
         Route::delete('cancel_good', 'GoodController@destroy')->name('user.cancel_good');
     });

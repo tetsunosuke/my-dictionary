@@ -5,23 +5,22 @@
         <aside class="col-sm-4">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">{{ $user->name }}</h3>
+                    <h3 class="card-title my-auto">{{ $user->name }}</h3>
                 </div>
-                <div class="card-body">
-                    <i class="fas fa-user-alt"></i>
-                </div>
-                <div>
-                    <p>母国語：{{ $user->native }}</p>
+                <div class="card-body d-flex">
+                    <div>
+                        <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p>母国語：　{{ $user->native }}</p>
+                    </div>
                 </div>
             </div>
         </aside>
         <div class="col-sm-8">
-            <div class="mx-0 my-2 py-2 border" style="background-color:#f0f8ff">    
+            <div class="mx-0 my-2 border">    
                 {!! Form::open(['route' => ['search.my_cards', $user->id]]) !!}
-                    <div class="form-group d-flex flex-row my-auto justify-content-between">
-                        {!! Form::text('keyword', null, ['class' => 'form-control col-sm-4', 'placeholder' => '日本語または英語で検索']) !!}
-                        {!! Form::submit('Search', ['class' => 'btn btn-primary btn-block col-sm-2']) !!}
-                    </div>               
+                @include('search.search_box')             
                 {!! Form::close() !!}
             </div>            
             @include('cards.cards', ['cards' => $cards])

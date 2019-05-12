@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="text-center">
+    <div class="text-center mb-5">
         <h1>Log in ログイン</h1>
     </div>
 
@@ -20,7 +20,7 @@
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('Log in ログイン', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('Log in ログイン', ['class' => 'btn btn-dark btn-block']) !!}
             {!! Form::close() !!}
 
             <p class="mt-2">アカウント作成は{!! link_to_route('signup.get', 'こちら') !!}から</p>

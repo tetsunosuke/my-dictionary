@@ -17,14 +17,17 @@ class UsersController extends Controller
             $cards = $user->cards();
         } else {
             $cards = $user->cards()->where('audience_selector', 'like', 'public');
+            $exists = $cards->exists();
+            if (!$exists){
+                return redirect('/');                
+            }
         }
-        
-        $cards = $cards->orderBy('created_at', 'desc')->paginate(20);
-        
+
+        $cards = $cards->orderBy('created_at', 'desc')->paginate(20);            
         return view('users.show', [
             'user' => $user,
             'cards' => $cards,
-        ]);
+        ]);            
     }
     
     //ログインユーザのidが来る

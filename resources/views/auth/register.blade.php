@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="text-center">
+    <div class="text-center mb-5">
         <h1>新規アカウントを作成</h1>
     </div>
 
@@ -35,7 +35,8 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('登録', ['class' => 'btn btn-primary btn-block']) !!}
+                <p style="font-size:14px;">※単語カード作成時にカードを公開設定にすると、登録したニックネームと母国語が<br>公開されます。</p>
+                {!! Form::submit('登録', ['class' => 'btn btn-dark btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>
