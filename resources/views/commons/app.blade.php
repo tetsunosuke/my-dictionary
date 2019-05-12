@@ -17,6 +17,11 @@
                 margin :0;
             }
             
+            .btn-search {
+                padding :0;
+                text-align: center;                
+            }
+            
             .btn-dark:hover, .btn-dark:focus, 
             .btn-dark:active, .btn-dark:active:focus, .btn-dark:active:hover, .btn-dark:active.focus,
             .btn-dark.active, .btn-dark.active:focus, .btn-dark.active:hover, .btn-dark.active.focus,
@@ -78,8 +83,8 @@
                 line-height: 1.6;
             }
             
-            .btn {
-                padding: 7px 16px;
+            .btn-sm {
+                padding: 4px 10px;
                 font-size: 16px;
             }
             
@@ -90,6 +95,7 @@
                 border-color : #cca3a3;
                 border-style: solid;
                 border-width: thin;
+                padding: 1 1;
             }
             
             .balloon {

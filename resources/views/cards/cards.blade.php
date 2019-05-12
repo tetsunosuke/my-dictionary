@@ -14,7 +14,7 @@
                 <div class="ml-5 my-3">
                     <p class="card-text">{!! nl2br(e($card->english)) !!}</p>
                 </div>                
-                <div class="d-flex justify-content-between flex-row ml-5 mr-3" style="font-size: 24px;">
+                <div class="d-flex justify-content-between flex-row ml-5 mr-3" style="font-size: 22px;">
                     <div class="d-flex flex-row">
                         @include('good.good_button', ['card' => $card])
                     </div>
