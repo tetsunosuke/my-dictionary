@@ -45,4 +45,26 @@ class UsersController extends Controller
             return back();
         }
     }    
+    public function account($id)//要らない？？//
+    {
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            return view('users.account', [
+                'user' => $user,   
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+    public function edit_name($id)
+    {
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            return view('users.edit_name', [
+                'user' => $user,   
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
 }

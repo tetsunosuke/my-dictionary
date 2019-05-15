@@ -13,12 +13,14 @@
 
 Route::get('/', 'CardsController@index')->name('home');
 
+/*0515削除
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+*/
 
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
@@ -33,9 +35,18 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::group(['prefix' => 'users/{id}'], function (){
         Route::get('good_cards', 'UsersController@good_cards')->name('users.good_cards');
+        Route::get('account', 'UsersController@account')->name('users.account');
+        Route::get('edit_name', 'UsersController@edit_name')->name('edit_name');
+        Route::get('edit_email', 'UsersController@edit_email')->name('edit_email');
+        Route::get('edit_password', 'UsersController@edit_password')->name('edit_password');
         Route::post('search_good_cards', 'SearchController@good_cards')->name('search.good_cards');
         Route::post('search_my_cards', 'SearchController@my_cards')->name('search.my_cards');
     });
 });
 
 Route::get('search', 'SearchController@index')->name('search.index');
+
+//0515追加
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
