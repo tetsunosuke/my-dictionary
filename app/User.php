@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\PasswordResetNotification;//190522パスワードリセット上書き用
 
 class User extends Authenticatable
 {
@@ -105,5 +106,15 @@ class User extends Authenticatable
     {
         return $this->good_cards()->where('card_id', $card_id)->where('good', 'bad')->exists();
     }    
-        
+    
+    /**
+     * パスワードリセット通知の送信をオーバーライド
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)//190522追記
+    {
+      $this->notify(new PasswordResetNotification($token));
+    }    
 }

@@ -20,11 +20,20 @@
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('users.account', 'アカウント情報', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
+                            <li class="dropdown-item">
+                                <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                ログアウト
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>                                
+                            </li>
                         </ul>
                     </li>
                 @else
-                    <li class="nav-item">{!! link_to_route('signup.get', 'アカウント作成', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('register', 'アカウント作成', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
                 @endif
             </ul>
