@@ -67,4 +67,70 @@ class UsersController extends Controller
             return redirect('/');
         }
     }
+    public function update_name(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+        ]);
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            $message = 'ニックネームを変更しました';
+            $user->name = $request->name;
+            $user->save();            
+            return view('users.account', [
+                'user' => $user,   
+                'message' => $message,
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+    public function edit_email($id)
+    {
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            return view('users.edit_email', [
+                'user' => $user,   
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }    
+    public function update_email(Request $request, $id)
+    {
+        $this->validate($request, [
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            $message = 'メールアドレスを変更しました';
+            $user->email = $request->email;
+            $user->save();            
+            return view('users.account', [
+                'user' => $user,   
+                'message' => $message,
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+    public function delete_account($id)
+    {
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            return view('users.delete_account', [
+                'user' => $user,   
+            ]);
+        } else {
+            return redirect('/');
+        }        
+    }
+    public function destroy($id)
+    {
+        if (\Auth::id() == $id){
+            $user = User::find($id);
+            $user->delete();
+        }
+        return redirect('/');
+    }    
 }

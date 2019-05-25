@@ -2,18 +2,18 @@
 
 @section('content')
     <div class="text-center mb-5">
-        <h1>Change nickname ニックネーム変更</h1>
+        <h1>Change email メールアドレス変更</h1>
     </div>
     <div class="row">
         <table class="col-sm-6 offset-sm-3 table">
-            {!! Form::model($user, ['route' => ['users.update_name', $user->id], 'method' => 'put']) !!}            
+            {!! Form::model($user, ['route' => ['users.update_email', $user->id], 'method' => 'put']) !!}            
             <tr>
                 <th>変更前：</th>
-                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
             </tr>
             <tr>
-                <th>{!! Form::label('name', '変更後：') !!}</th>
-                <td>{!! Form::text('name', old('name')) !!}</td>
+                <th>{!! Form::label('email', '変更後：') !!}</th>
+                <td>{!! Form::text('email', old('email')) !!}</td>
             </tr>
             <tr>
                 <td colspan="2">{!! Form::submit('変更', ['class' => 'btn btn-dark btn-block']) !!}</td>
