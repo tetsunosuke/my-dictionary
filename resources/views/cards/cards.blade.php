@@ -8,7 +8,8 @@
                     <div class="text-muted">{{ $card->updated_at }}</div>
                 </div>
                 <div class="ml-5 mt-3">
-                    <p class="card-text">{!! nl2br(e($card->japanese)) !!}</p>
+                    <p class="card-text mb-0">{!! nl2br(e($card->japanese)) !!}</p>
+                    <p class="text-muted" style="font-size: small;">[{!! nl2br(e($card->phonetic)) !!}]</p>
                 </div>
                 <hr>
                 <div class="ml-5 my-3">
@@ -35,4 +36,9 @@
         </li>
     @endforeach
 </ul>
+<div class="mb-3">
+<!-- Begin Yahoo! JAPAN Web Services Attribution Snippet -->
+<span style="margin:15px 15px 15px 15px"><a href="https://developer.yahoo.co.jp/about">Web Services by Yahoo! JAPAN</a></span>
+<!-- End Yahoo! JAPAN Web Services Attribution Snippet -->
+</div>
 {{ $cards->render('pagination::bootstrap-4') }}

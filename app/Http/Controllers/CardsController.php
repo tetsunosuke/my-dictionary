@@ -59,11 +59,38 @@ class CardsController extends Controller
             'english' => 'required|max:191',
             'audience_selector' => 'required|in:public,private',
         ]);
+        
+        $japanese = $request->japanese;
+        
+        $api = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
+        $appid = env('RUBY_WEBAPI_APPID', false);
+        $params = array(
+            'sentence' => $japanese,
+        );
+         
+        $ch = curl_init($api);
+        curl_setopt_array($ch, array(
+            CURLOPT_POST           => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_USERAGENT      => "Yahoo AppID: $appid",
+            CURLOPT_POSTFIELDS     => http_build_query($params),
+        ));
+         
+        $result = curl_exec($ch);
+        curl_close($ch);
+        
+        $results = new \SimpleXMLElement($result);
+        $results_array = $results->Result[0]->WordList[0]->Word;
+        $phonetic = '';
+        foreach($results_array as $word){
+            $phonetic .= $word->Roman . " ";
+        }
 
         $request->user()->cards()->create([
-            'japanese' => $request->japanese,
+            'japanese' => $japanese,
             'english' => $request->english,
             'audience_selector' => $request->audience_selector,
+            'phonetic' => $phonetic,
         ]);
 
         return redirect('/');
@@ -112,6 +139,7 @@ class CardsController extends Controller
             'japanese' => 'required|max:191',
             'english' => 'required|max:191',
             'audience_selector' => 'required|in:public,private',
+            'phonetic' => 'max:191',
         ]);
 
         $card = Card::find($id);
@@ -120,6 +148,7 @@ class CardsController extends Controller
             $card->japanese = $request->japanese;
             $card->english = $request->english;
             $card->audience_selector = $request->audience_selector;
+            $card->phonetic = $request->phonetic;
             $card->save();
         }
         return redirect('/');        

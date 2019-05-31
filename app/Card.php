@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    protected $fillable = ['user_id', 'japanese', 'english', 'audience_selector'];
+    protected $fillable = ['user_id', 'japanese', 'english', 'audience_selector', 'phonetic'];
     
     public function user()
     {

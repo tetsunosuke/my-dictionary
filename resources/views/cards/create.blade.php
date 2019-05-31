@@ -8,6 +8,7 @@
                 <div class="form-group">
                     {!! Form::label('japanese', 'Japanese 日本語') !!}
                     {!! Form::textarea('japanese', old('japanese'), ['class' => 'form-control', 'rows' => '2']) !!}
+                    <p class="text-muted" style="font-size: 90%;">※ローマ字読みは自動入力されます。</p> 
                 </div>
 
                 <div class="form-group">
@@ -27,6 +28,11 @@
                 <p style="font-size:14px;">※カードを公開設定にすると登録したニックネームと母国語が公開されます。</p>
                 {!! Form::submit('保存', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
+            <div class="mt-3">
+            <!-- Begin Yahoo! JAPAN Web Services Attribution Snippet -->
+            <span style="margin:15px 15px 15px 15px"><a href="https://developer.yahoo.co.jp/about">Web Services by Yahoo! JAPAN</a></span>
+            <!-- End Yahoo! JAPAN Web Services Attribution Snippet -->     
+            </div>
         </div>
     </div>    
 @endsection
