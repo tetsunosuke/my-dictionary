@@ -12,8 +12,12 @@
                         {{ session('status') }}
                     </div>
                 @endif
-    
+                
+                @if (Auth::check())
+                <form method="POST" action="{{ route('auth_password.email') }}">
+                @else
                 <form method="POST" action="{{ route('password.email') }}">
+                @endif
                     {{ csrf_field() }}
     
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

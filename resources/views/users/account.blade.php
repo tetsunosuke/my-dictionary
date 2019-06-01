@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <th>Password<br>パスワード</th>
-                <td class="align-middle">{!! link_to_route('password.request', 'パスワードを変更', null, ['class' => 'btn btn-link btn-sm pl-0']) !!}</td>
+                <td class="align-middle">{!! link_to_route('auth_password.request', 'パスワードを変更', null, ['class' => 'btn btn-link btn-sm pl-0']) !!}</td>
                 <td></td>
             </tr>      
             <tr class="border-bottom">

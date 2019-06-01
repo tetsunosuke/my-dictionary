@@ -55,4 +55,9 @@ Route::get('search', 'SearchController@index')->name('search.index');
 //0515追加
 Auth::routes();
 
+Route::get('auth/password/reset', 'Auth\AuthForgotPasswordController@showLinkRequestForm')->name('auth_password.request');
+Route::post('auth/password/email', 'Auth\AuthForgotPasswordController@sendResetLinkEmail')->name('auth_password.email');
+Route::post('auth/password/reset', 'Auth\AuthResetPasswordController@reset')->name('auth_password.reset');
+Route::get('auth/password/reset/{token}', 'Auth\AuthResetPasswordController@showResetForm');
+
 //Route::get('/home', 'HomeController@index')->name('home');
