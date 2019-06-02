@@ -16,7 +16,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item"><a href="/">ホーム</a></li>
                             <li class="dropdown-item">{!! link_to_route('users.show', 'My cards', ['id' => Auth::id()]) !!}</li>
-                            <li class="dropdown-item">{!! link_to_route('users.good_cards', 'Good一覧', ['id' => Auth::id()]) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('users.good_cards', 'Like一覧', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('users.account', 'アカウント情報', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-divider"></li>

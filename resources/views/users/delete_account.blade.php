@@ -10,7 +10,7 @@
         
         <div class="col-sm-6 offset-sm-3"> 
             <p class="text-right mb-3">{!! link_to_route('users.account', '<アカウント情報へ戻る>', ['id' => $user->id]) !!}</p>
-            <div class="border">
+            <div>
                 <p style="font-size: 120%;">Do you really wish to delete your account?<br>
                 アカウントを削除します。よろしいですか？</p>
                 <div class="text-center">

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="text-center">
-    <h1>Good一覧</h1>
+    <h1>Like一覧</h1>
 </div>
 <div class="mx-0 my-2 border">     
     {!! Form::open(['route' => ['search.good_cards', $user->id]]) !!}
