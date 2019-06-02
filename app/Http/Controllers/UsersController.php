@@ -45,7 +45,7 @@ class UsersController extends Controller
             return back();
         }
     }    
-    public function account($id)//要らない？？//
+    public function account($id)
     {
         if (\Auth::id() == $id){
             $user = User::find($id);

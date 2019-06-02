@@ -14,6 +14,7 @@
                 @endif
                 
                 @if (Auth::check())
+                <p class="text-right mb-3">{!! link_to_route('users.account', '<アカウント情報へ戻る>', ['id' => Auth::id()]) !!}</p>
                 <form method="POST" action="{{ route('auth_password.email') }}">
                 @else
                 <form method="POST" action="{{ route('password.email') }}">

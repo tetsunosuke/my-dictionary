@@ -5,7 +5,7 @@
             <div class="media-body">
                 <div class="my-1 m-3 d-flex justify-content-between">
                     <div><i class="fas fa-user-alt mr-2"></i>{!! link_to_route('users.show', $card->user->name, ['id' => $card->user->id]) !!}</div>
-                    <div class="text-muted">{{ $card->updated_at }}</div>
+                    <div class="text-muted">{{ $card->updated_at->format('Y-m-d') }}</div>
                 </div>
                 <div class="ml-5 mt-3">
                     <p class="card-text mb-0">{!! nl2br(e($card->japanese)) !!}</p>
