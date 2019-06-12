@@ -93,11 +93,18 @@
             button {
                 background-color: white;
                 color: #cc0066;
-                border-radius: 5px;
+                border : none;
+/*                border-radius: 5px;
                 border-color : #cca3a3;
                 border-style: solid;
-                border-width: thin;
+                border-width: thin;*/
                 padding: 1 1;
+            }
+            
+            .count {
+                color: #cc0066;
+                font-size: 80%;
+                margin: auto;
             }
             
             .balloon {

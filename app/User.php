@@ -35,8 +35,13 @@ class User extends Authenticatable
     
     public function good_cards()
     {
-        return $this->belongsToMany(Card::class, 'good', 'user_id', 'card_id')->withTimestamps();    
+        return $this->belongsToMany(Card::class, 'good', 'good_user_id', 'card_id')->withTimestamps();    
     }    
+
+    public function bad_cards()
+    {
+        return $this->belongsToMany(Card::class, 'bad', 'bad_user_id', 'card_id')->withTimestamps();    
+    }  
 
     public function good($card_id)//goodする機能
     {
@@ -47,15 +52,13 @@ class User extends Authenticatable
         if ($good_exist) {
             // 既に良いねしていれば何もしない
             return false;
-        } elseif($bad_exist) {
-            // Badしてれば書き換えて良いねする
-            //ユーザがgoodしたカードのうち当該カードのレコードを取得
-            //$this->good_cards()->where('card_id', $card_id);
-            $this->good_cards()->updateExistingPivot($card_id, ['good' => 'good']);
-            return true;
         } else {
-            //goodもbadもしてなければレコードを作ってgoodカラムをgoodにする
-            $this->good_cards()->attach($card_id, ['good' => 'good']);
+            if($bad_exist) {
+                // Badしてればbadを削除
+                $this->bad_cards()->detach($card_id);
+            } 
+            //goodしてなければレコード作成
+            $this->good_cards()->attach($card_id);
             return true;
         }
     }
@@ -69,14 +72,13 @@ class User extends Authenticatable
         if ($bad_exist) {
             // 既にbadしていれば何もしない
             return false;
-        } elseif($good_exist) {
-            // goodしてれば書き換えてbadする
-            //ユーザがgoodしたカードのうち当該カードのレコードを取得
-            $this->good_cards()->updateExistingPivot($card_id, ['good' => 'bad']);
-            return true;
         } else {
-            //goodもbadもしていなければレコードを作成してgoodカラムをbadにする
-            $this->good_cards()->attach($card_id, ['good' => 'bad']);
+            if($good_exist) {
+                // goodしてればgoodを削除する
+                $this->good_cards()->detach($card_id);
+            }
+            //badしていなければレコードを作成
+            $this->bad_cards()->attach($card_id);
             return true;
         }
     }
@@ -87,24 +89,27 @@ class User extends Authenticatable
         $good_exist = $this->pressed_good($card_id);
         $bad_exist = $this->pressed_bad($card_id);
         
-        if ($good_exist||$bad_exist) {
+        if ($good_exist) {
             // 既に良いねしていればレコード削除
             $this->good_cards()->detach($card_id);
+            return true;           
+        } elseif ($bad_exist) {
+            $this->bad_cards()->detach($card_id);
             return true;
         } else {
-            // 良いねしてなければ何もしない
+            // goodもbadもしてなければ何もしない
             return false;
         }
     }
     
     public function pressed_good($card_id)
     {
-        return $this->good_cards()->where('card_id', $card_id)->where('good', 'good')->exists();
+        return $this->good_cards()->where('card_id', $card_id)->exists();
     }    
     
     public function pressed_bad($card_id)
     {
-        return $this->good_cards()->where('card_id', $card_id)->where('good', 'bad')->exists();
+        return $this->bad_cards()->where('card_id', $card_id)->exists();
     }    
     
     /**

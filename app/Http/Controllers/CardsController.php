@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Card;
+use DB;
 
 class CardsController extends Controller
 {
@@ -15,8 +16,14 @@ class CardsController extends Controller
     public function index()
     {
         $user = null;
-        $cards = Card::where('audience_selector', 'like', 'public');
-        
+//        $cards = Card::where('audience_selector', 'like', 'public');
+
+        $cards = Card::leftJoin('good', 'cards.id', '=', 'good.card_id')
+                    ->leftJoin('bad', 'cards.id', '=', 'bad.card_id')
+                    ->select('cards.*', 'good.good_user_id', 'bad.bad_user_id');
+                    
+        $cards = $cards->where('audience_selector', 'public');
+
         if (\Auth::check()) {
             $user = \Auth::user();
             $cards = $cards->orWhere('user_id', '=', $user->id);
@@ -24,9 +31,10 @@ class CardsController extends Controller
         
         $cards = $cards->orderBy('created_at', 'desc')->paginate(20);
         
+        
         $data = [
             'cards' => $cards,
-        ];        
+        ];
         
         return view('welcome', $data);
     }
@@ -94,17 +102,6 @@ class CardsController extends Controller
         ]);
 
         return redirect('/');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

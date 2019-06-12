@@ -1,7 +1,6 @@
 <ul class="list-unstyled">
     @foreach ($cards as $card)
         <li class="media mb-3 border border-dark rounded pb-2" style="background-color:white">
-            {{--<img class="mr-2 rounded" src="{{ Gravatar::src($micropost->user->email, 50) }}" alt="">--}}
             <div class="media-body">
                 <div class="my-1 m-3 d-flex justify-content-between">
                     <div><i class="fas fa-user-alt mr-2"></i>{!! link_to_route('users.show', $card->user->name, ['id' => $card->user->id]) !!}</div>
