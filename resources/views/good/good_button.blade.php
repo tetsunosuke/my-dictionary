@@ -1,5 +1,18 @@
 @if (Auth::check())
-    @if (Auth::user()->pressed_good($card->id))
+    @if (Auth::id() == $card->user->id)
+        <div>
+            <button><i class='far fa-thumbs-up'></i></button>
+        </div>
+        <div class="count mr-2">
+            {{ $card->good_users()->count() }}
+        </div>
+        <div>
+            <button><i class='far fa-thumbs-down'></i></button>
+        </div>
+        <div class="count">
+            {{ $card->bad_users()->count() }}
+        </div>
+    @elseif (Auth::user()->pressed_good($card->id))
         <div>
             {{--goodした場合はgood削除ボタンとBadボタン--}}
             {!! Form::open(['route' => ['user.cancel_good', $card->id], 'method' => 'delete']) !!}
