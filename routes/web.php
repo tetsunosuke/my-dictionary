@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('search_my_cards', 'SearchController@my_cards')->name('search.my_cards');
         Route::get('delete_account', 'UsersController@delete_account')->name('delete_account');
         Route::delete('', 'UsersController@destroy')->name('users.destroy');
+        
+        Route::get('test_index', 'TestController@index')->name('users.test_index');
+        Route::get('test', 'TestController@test')->name('users.test');
     });
 });
 
