@@ -1,3 +1,21 @@
+<h2>自分で作る英単語帳アプリ：My Dictionary　(Laravel Framework)</h2>
+<h2>機能一覧</h2>
+<ul>
+  <li>投稿・編集・削除機能</li>
+  <li>検索機能</li>
+  <li>お気に入り機能</li>
+  <li>カウント機能</li>
+  <li>認証機能</li>
+  <li>パスワードリセット機能</li>
+  <li>ページネーション機能</li>
+</ul>
+<h2>使用ツール</h2>
+<ul>
+  <li>フロントエンド：HTML, CSS, Bootstrap</li>
+  <li>サーバサイド：PHP/Laravel</li>
+  <li>データベース：Postgres</li>
+</ul>
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
