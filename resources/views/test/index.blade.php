@@ -36,7 +36,7 @@
                     {!! Form::label('japanese_question', '日→英') !!}
                     </div>
                 </div>                
-                {!! Form::submit('テスト開始', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('テスト開始', ['class' => 'btn btn-dark btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>
