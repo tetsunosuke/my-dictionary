@@ -45,4 +45,8 @@
     <div>
         @include('cards.cards', ['cards' => $cards])
     </div>    
+    <div class="col-sm-6 offset-sm-3">
+        <a class="twitter-timeline" data-height="300" data-theme="light" href="https://twitter.com/MyDictionary19?ref_src=twsrc%5Etfw">Tweets by MyDictionary19</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
 @endsection
