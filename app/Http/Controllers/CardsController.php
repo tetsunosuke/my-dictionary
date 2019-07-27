@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Card;
 use DB;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class CardsController extends Controller
 {
@@ -69,6 +70,8 @@ class CardsController extends Controller
         ]);
         
         $japanese = $request->japanese;
+        $english = $request->english;
+        $audience_selector = $request->audience_selector;
         
         $api = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
         $appid = env('RUBY_WEBAPI_APPID', false);
@@ -96,10 +99,40 @@ class CardsController extends Controller
 
         $request->user()->cards()->create([
             'japanese' => $japanese,
-            'english' => $request->english,
-            'audience_selector' => $request->audience_selector,
+            'english' => $english,
+            'audience_selector' => $audience_selector,
             'phonetic' => $phonetic,
         ]);
+        
+        if ($audience_selector == "public"){
+            
+            $twitter_api_key = env('TWITTER_API_KEY');
+            $twitter_api_secret_key = env('TWITTER_API_SECRET_KEY');
+            $twitter_access_token = env('TWITTER_ACCESS_TOKEN');
+            $twitter_access_token_secret = env('TWITTER_ACCESS_TOKEN_SECRET');
+            
+            $twitter = new TwitterOAuth($twitter_api_key, $twitter_api_secret_key, $twitter_access_token, $twitter_access_token_secret);
+            
+            if (mb_strlen($english) > 20){
+                $short_english = mb_substr($english, 0, 20) . "...";//23
+            } else {
+                $short_english = $english;
+            };
+            
+            if (mb_strlen($japanese) > 20){
+                $short_japanese = mb_substr($japanese, 0, 20) . "…";//23
+            } else {
+                $short_japanese = $japanese;
+            };
+
+            $twitter->post("statuses/update", [
+                "status" =>
+                    '新しい投稿がありました!' . PHP_EOL .
+                    '英：' . $short_english . PHP_EOL . '日：' . $short_japanese . PHP_EOL .
+                    'http://my-dictionary2019.herokuapp.com/'
+                    //140-12-39-2-2=85
+            ]);            
+        }
 
         return redirect('/');
     }

@@ -21,7 +21,14 @@
             
             .btn-search {
                 padding :0;
-                text-align: center;                
+                text-align: center;       
+            }
+            
+            .btn-register {
+                padding: 14px 24px;
+                border: 0 none;
+                text-align: center;
+                font-size: large;
             }
             
             .btn-dark:hover, .btn-dark:focus, 
@@ -87,7 +94,8 @@
             
             .btn-sm {
                 padding: 4px 10px;
-                font-size: 16px;
+                /*font-size: 16px;*/
+                border: 0 none;
             }
             
             button {
