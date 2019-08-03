@@ -16,6 +16,8 @@ class TestController extends Controller
             ]);
         }
     }
+
+    
     public function test(Request $request, $id) {
         $user = User::find($id);
         $scope = $request->input('scope');
@@ -59,4 +61,45 @@ class TestController extends Controller
             'style' => $style,
         ]);        
     }
+/*
+    public function test(Request $request, $id) {
+        $user = User::find($id);
+        $scope = $request->input('scope');
+        $style = $request->input('style');
+        $order = $request->input('order');//1ページ目から渡された順序を$orderとする
+        
+        
+        if ($scope == 'my_cards') {
+            $cards = $user->cards();
+        } else {
+            $cards = $user->good_cards();
+        };
+        
+        $orderが空なら（＝1ページ目なら）ランダムが並び順。
+　　　　//$orderの中身があれば（＝2ページ目以降なら）$orderが並び順。
+        if ($order == null) {
+            $count = $cards->count();
+            $numbers = range(1, $count);//1から$countまでの配列をつくる
+            shuffle($numbers);//配列をシャッフルする
+            $pages = null;    
+            //配列から一つずつ取り出して$pagesに文字列として追加する
+            foreach ($numbers as $number) {
+                $pages .= $number;
+            };
+            //13542みたいのができる
+        } else {
+            $pages = $order;
+            $count = null;
+        };
+
+       $cards = $cards->inRandomOrder($pages)->paginate(1);
+
+        return view('test.test', [
+            'cards' => $cards,
+            'order' => $pages,
+            'scope' => $scope,
+            'style' => $style,
+        ]);        
+    }
+*/
 }
