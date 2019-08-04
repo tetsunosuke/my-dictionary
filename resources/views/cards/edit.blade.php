@@ -32,7 +32,7 @@
                     {!! Form::label('private', 'Private 非公開') !!}
                 </div>
                 <p style="font-size:14px;">※カードを公開設定にすると登録したニックネームと母国語が公開されます。</p>
-                {!! Form::submit('変更を保存', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('変更を保存', ['class' => 'btn btn-dark btn-block']) !!}
             {!! Form::close() !!}  
             <div class="mt-3">
             <!-- Begin Yahoo! JAPAN Web Services Attribution Snippet -->
