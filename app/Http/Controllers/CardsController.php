@@ -113,17 +113,9 @@ class CardsController extends Controller
             
             $twitter = new TwitterOAuth($twitter_api_key, $twitter_api_secret_key, $twitter_access_token, $twitter_access_token_secret);
             
-            if (mb_strlen($english) > 20){
-                $short_english = mb_substr($english, 0, 20) . "...";//23
-            } else {
-                $short_english = $english;
-            };
-            
-            if (mb_strlen($japanese) > 20){
-                $short_japanese = mb_substr($japanese, 0, 20) . "…";//23
-            } else {
-                $short_japanese = $japanese;
-            };
+
+            $short_english  = mb_strimwidth($english, 0, 23, "...");
+            $short_japanese = mb_strimwidth($japanese, 0, 23, "...");
 
             $twitter->post("statuses/update", [
                 "status" =>
